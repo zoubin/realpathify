@@ -29,3 +29,15 @@ Type: `String`, `Array`
 If you specified the `filter` option, then only subdirectories contained in it will be realpathified. It makes `realpathify` work more fast.
 
 If not specified, `realpathify` will try to resolve all subdirectories in `node_modules`.
+
+## realpathify.async(asyncResolve, filter)
+
+Return a realpathified async resolve function.
+
+## realpathify.sync(syncResolve, filter)
+
+Return a realpathified sync resolve function.
+
+## realpathify.realpath(file, filter, cache)
+
+Resolve `file` to realpath.
