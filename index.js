@@ -21,7 +21,7 @@ function realpathResolve(resolve, filter) {
             if (!moduleDir) {
                 return cb(err, file, pkg);
             }
-            if (!filter || filter.indexOf(moduleDir) > -1) {
+            if (!filter.length || filter.indexOf(moduleDir) > -1) {
                 var rfile = fs.realpathSync(file, cache);
                 cache[file] = rfile;
                 return cb(err, rfile, pkg);
