@@ -2,7 +2,7 @@ var fs = require('fs');
 
 module.exports = function (b, opts) {
     opts = opts || {};
-    b._bresolve = asyc(b._bresolve, opts.filter);
+    b._bresolve = async(b._bresolve, opts.filter);
 };
 
 module.exports.async = async;
