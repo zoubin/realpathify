@@ -1,6 +1,6 @@
 {
   "name": "realpathify",
-  "version": "0.1.4",
+  "version": "1.0.0",
   "description": "plugin for browserify to resolve symlink to realpath, to make transforms work for symlinked local modules",
   "main": "index.js",
   "directories": {
