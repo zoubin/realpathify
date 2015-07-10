@@ -37,9 +37,12 @@ function realpath(file, filter, cache) {
         return file;
     }
     if (!filter.length || filter.indexOf(moduleDir) > -1) {
-        var rfile = fs.realpathSync(file, cache);
-        cache[file] = rfile;
-        return rfile;
+        try {
+            var rfile = fs.realpathSync(file, cache);
+            cache[file] = rfile;
+            return rfile;
+        } catch (e) {
+        }
     }
     return file;
 }
