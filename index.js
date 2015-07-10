@@ -1,8 +1,15 @@
 var fs = require('fs');
+var shimify = require('resolve-shimify');
 
 module.exports = function (b, opts) {
     opts = opts || {};
-    b._bresolve = async(b._bresolve, opts.filter);
+    var cache = {};
+    b.plugin(shimify, function (id) {
+        return realpath(id, opts.filter, cache);
+    })
+    .on('reset', function () {
+        cache = {};
+    });
 };
 
 module.exports.async = async;
@@ -39,7 +46,6 @@ function realpath(file, filter, cache) {
     if (!filter.length || filter.indexOf(moduleDir) > -1) {
         try {
             var rfile = fs.realpathSync(file, cache);
-            cache[file] = rfile;
             return rfile;
         } catch (e) {
         }

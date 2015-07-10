@@ -5,10 +5,28 @@ var resolve = realpathify.async(nodeResolve, ['local_module']);
 resolve.sync = realpathify.sync(nodeResolve.sync, ['local_module']);
 var path = require('path');
 var realpath = realpathify.realpath;
+var sink = require('sink-transform');
+var browserify = require('browserify');
 
-function fixtures() {
-    return path.resolve.bind(path, __dirname, 'fixtures').apply(null, arguments);
-}
+var fixtures = path.resolve.bind(path, __dirname, 'fixtures');
+
+test('browserify', function(t) {
+    t.plan(1);
+    process.env.NODE_ENV = 'production';
+    browserify(fixtures('app/index.js'))
+    .plugin(realpathify, { filter: ['local_module'] })
+    .bundle()
+    .pipe(sink.str(function (body) {
+        browserify(fixtures('app/entry.js'))
+        .bundle()
+        .pipe(sink.str(function (b) {
+            t.equal(
+                body,
+                b.replace(/\.\/local_module/g, 'local_module')
+            );
+        }));
+    }));
+})
 
 test('async', function(t) {
     t.plan(3);
