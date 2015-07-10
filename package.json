@@ -25,9 +25,6 @@
     "url": "https://github.com/zoubin/realpathify/issues"
   },
   "homepage": "https://github.com/zoubin/realpathify#readme",
-  "dependencies": {
-    "resolve-shimify": "^1.0.0"
-  },
   "devDependencies": {
     "browserify": "^10.2.6",
     "envify": "^3.4.0",

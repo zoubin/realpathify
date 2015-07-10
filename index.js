@@ -1,15 +1,9 @@
 var fs = require('fs');
-var shimify = require('resolve-shimify');
 
 module.exports = function (b, opts) {
     opts = opts || {};
     var cache = {};
-    b.plugin(shimify, function (id) {
-        return realpath(id, opts.filter, cache);
-    })
-    .on('reset', function () {
-        cache = {};
-    });
+    b._bresolve = async(b._bresolve, opts.filter);
 };
 
 module.exports.async = async;
