@@ -1,4 +1,8 @@
 # realpathify
+**Deprecated**
+
+Browserify has fixed the problem in this [commit](https://github.com/substack/node-browserify/commit/504832b4b9fde30c36877122b265ddccbea7be77).
+
 plugin for browserify to resolve symlinks to their realpaths, to make transforms work for symlinked local modules
 
 substack has recommended a nice way of organizing your local modules in [browserify-handbook](https://github.com/substack/browserify-handbook#symlink).
